@@ -1,0 +1,26 @@
+name: Deploy Blog
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master, develop]
+
+jobs:
+  deploz_blog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build

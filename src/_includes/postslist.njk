@@ -1,0 +1,28 @@
+
+<ol reversed class="postlist list-unstyled">
+    {% for post in postslist | reverse %}
+        <li class="post-preview postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
+            <!-- Title -->
+            <a href="{{ post.url | url }}" class="postlist-link">
+                <h2 class="post-title">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</h2>
+            </a>
+
+            <!-- tags -->
+            <ul class='post-tag-list list-unstyled'>
+                {% for tag in post.data.tags | filterTagList %}
+                    {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+                    <li><a href="{{ tagUrl | url }}" class="post-tag"><span class="badge bg-light text-dark">{{ tag }}</span></a></li>
+                {% endfor %}
+            </ul>
+
+            <!-- Metadata -->
+            <p class="post-meta">
+                Posted by
+                <a href="#!">{{ post.author or 'Anonymous' }}</a>
+                <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+            </p>
+
+            <hr class="my-4" />
+        </li>
+    {% endfor %}
+</ol>
