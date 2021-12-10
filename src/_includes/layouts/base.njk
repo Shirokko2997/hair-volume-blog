@@ -30,10 +30,14 @@
 
 {% include "navigation.njk" %}
 
-{% include "header.njk" %}
+{#{% include "header.njk" %}#}
 
 <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
-    {{ content | safe }}
+    <div class="site-section">
+        <div class="container">
+            {{ content | safe }}
+        </div>
+    </div>
 </main>
 
 {% include "footer.njk" %}

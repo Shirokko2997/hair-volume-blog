@@ -49,6 +49,10 @@ module.exports = function (eleventyConfig) {
     return Math.min.apply(null, numbers);
   });
 
+  eleventyConfig.addFilter("getByKey", (list, id) => {
+    return list.find((item) => item.key === id);
+  });
+
   function filterTagList(tags) {
     return (tags || []).filter(
       (tag) => ["all", "nav", "post", "posts"].indexOf(tag) === -1

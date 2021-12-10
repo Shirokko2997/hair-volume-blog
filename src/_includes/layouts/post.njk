@@ -3,37 +3,69 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 
-<article class="mb-4">
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                {{ content | safe }}
+{% set aboutNav = collections.all | eleventyNavigation | getByKey('about') %}
+
+<div class="row">
+    <article class="col-lg-8 single-content">
+        {% if image %}
+            <p class="mb-5">
+                <img src="{{ image }}" alt="Image" class="img-fluid">
+            </p>
+        {% endif %}
+        <h1 class="mb-4">
+            {{ title }}
+        </h1>
+        <div class="post-meta d-flex mb-5">
+            <div class="vcard">
+                <span class="d-block"><a href="{{ aboutNav.url }}">{{ author or 'Anonymous' }}</a></span>
+                <span class="date-read">
+                    <!-- Post date -->
+                    <time class="postlist-date" datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+                    <!-- Read time -->
+{#                  <span class="mx-1">•</span> 3 min read#}
+                </span>
             </div>
         </div>
-    </div>
-</article>
 
-<div class="container px-4 px-lg-5">
-{%- if collections.posts %}
-    {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
-    {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
-    {%- if nextPost or previousPost %}
-        <hr>
-        <ul class='list-unstyled post-jump'>
-            <li>
-                {%- if nextPost %}
-                    <span class='post-jump-label text-muted'>Next</span>
-                    <a href="{{ nextPost.url | url }}">« {{ nextPost.data.title }}</a>
-                {% endif %}
-            </li>
-            <li>
-                {%- if previousPost %}
-                    <span class='post-jump-label  text-muted'>Previous</span>
-                    <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}  »</a>
-                {% endif %}
-            </li>
-        </ul>
-    {%- endif %}
-{%- endif %}
+        {{ content | safe }}
 
+        <div class="pt-5">
+            Tags:
+            <ul class='post-tag-list list-unstyled d-inline-block'>
+                {% for tag in tags | filterTagList %}
+                    {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+                    <li class="d-inline-block mx-1">
+                        <a href="{{ tagUrl | url }}" class="post-tag"><span class="badge bg-light text-dark">{{ tag }}</span></a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </article>
 </div>
+
+
+<!-- Pagination -->
+{#<div class="container px-4 px-lg-5">#}
+{#{%- if collections.posts %}#}
+{#    {%- set nextPost = collections.posts | getNextCollectionItem(page) %}#}
+{#    {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}#}
+{#    {%- if nextPost or previousPost %}#}
+{#        <hr>#}
+{#        <ul class='list-unstyled post-jump'>#}
+{#            <li>#}
+{#                {%- if nextPost %}#}
+{#                    <span class='post-jump-label text-muted'>Next</span>#}
+{#                    <a href="{{ nextPost.url | url }}">« {{ nextPost.data.title }}</a>#}
+{#                {% endif %}#}
+{#            </li>#}
+{#            <li>#}
+{#                {%- if previousPost %}#}
+{#                    <span class='post-jump-label  text-muted'>Previous</span>#}
+{#                    <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}  »</a>#}
+{#                {% endif %}#}
+{#            </li>#}
+{#        </ul>#}
+{#    {%- endif %}#}
+{#{%- endif %}#}
+
+{#</div>#}

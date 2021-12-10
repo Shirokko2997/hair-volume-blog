@@ -2,7 +2,8 @@
 layout: post
 title: Rólam
 eleventyNavigation:
-  key: Rólam
+  title: Rólam
+  key: about
   order: 3
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: This is my first post.
 description: This is a post on My Blog about agile frameworks.
+thumbnail: https://picsum.photos/301/301
+image: https://picsum.photos/1920/1080
 date: 2018-05-01
 tags:
   - another tag

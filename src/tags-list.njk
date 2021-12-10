@@ -3,16 +3,9 @@ permalink: /tags/
 layout: layouts/home.njk
 title: Tags
 ---
-<div class="container px-4 px-lg-5">
-  <div class="row gx-4 gx-lg-5 justify-content-center">
-    <div class="col-md-10 col-lg-8 col-xl-7">
-
-      <ul class='list-unstyled'>
-        {% for tag in collections.tagList %}
-          {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
-          <li><a href="{{ tagUrl | url }}" class="post-tag"><span class="badge bg-light text-dark">{{ tag }}</span></a></li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
+<ul class='list-unstyled'>
+  {% for tag in collections.tagList %}
+    {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+    <li><a href="{{ tagUrl | url }}" class="post-tag"><span class="badge bg-light text-dark">{{ tag }}</span></a></li>
+  {% endfor %}
+</ul>
