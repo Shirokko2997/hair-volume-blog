@@ -21,6 +21,10 @@ module.exports = function (eleventyConfig) {
   // Alias `layout: post` to `layout: layouts/post.njk`
   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
 
+  eleventyConfig.addFilter("padStart", function (value, maxLength, fillString) {
+    return value.toString().padStart(maxLength, fillString);
+  });
+
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
       "dd LLL yyyy"
@@ -51,6 +55,12 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("getByKey", (list, id) => {
     return list.find((item) => item.key === id);
+  });
+
+  eleventyConfig.addFilter("authorPickedPosts", (list) => {
+    return (list || [])
+      .filter((p) => p.data.authorPick)
+      .sort((a, b) => b.data.authorPick - a.data.authorPick);
   });
 
   function filterTagList(tags) {

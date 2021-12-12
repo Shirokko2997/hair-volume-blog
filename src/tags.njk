@@ -18,18 +18,9 @@ permalink: /tags/{{ tag | slug }}/
 
 {% set showMetaData = false %}
 
+{% set postslist = collections[ tag ] %}
+{% include "post-list.njk" %}
 
-<div class="container px-4 px-lg-5">
-  <div class="row gx-4 gx-lg-5 justify-content-center">
-    <div class="col-md-10 col-lg-8 col-xl-7">
-      {% set postslist = collections[ tag ] %}
-      {% include "postslist.njk" %}
+<hr class="my-4" />
 
-      <hr class="my-4" />
-
-      <a class="more" href="{{ '/tags/' | url }}">See all tags</a>
-
-    </div>
-  </div>
-</div>
-
+<a class="more" href="{{ '/tags/' | url }}">See all tags</a>

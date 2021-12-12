@@ -975,11 +975,11 @@ h3,
   color: #ccc;
 }
 
-.trend-entry .trend-contents h2 {
+.trend-entry .trend-contents h3 {
   font-size: 18px;
 }
 
-.trend-entry .trend-contents h2 a {
+.trend-entry .trend-contents h3 a {
   color: #000;
 }
 

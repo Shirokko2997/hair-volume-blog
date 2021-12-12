@@ -3,24 +3,16 @@ layout: layouts/home.njk
 eleventyNavigation:
     key: Home
     order: 1
+title: Latest posts
 ---
 {% set maxPosts = collections.posts.length | min(3) %}
 
 {% set showMetaData = false %}
+{#        <p>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</p>#}
 
-<div class="container px-4 px-lg-5">
-    <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-
-            <p>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</p>
-
-            {% set postslist = collections.posts | head(-3) %}
-            {% set postslistCounter = collections.posts | length %}
-            {% include "postslist.njk" %}
+{% set postslist = collections.posts | head(-3) %}
+{% set postslistCounter = collections.posts | length %}
+{% include "post-list.njk" %}
 
 
-            <p><a class="more" href="{{ '/posts/' | url }}">More posts can be found in the archive</a></p>
-
-        </div>
-    </div>
-</div>
+<p><a class="more" href="{{ '/posts/' | url }}">More posts can be found in the archive</a></p>

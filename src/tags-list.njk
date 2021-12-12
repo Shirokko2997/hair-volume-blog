@@ -6,6 +6,6 @@ title: Tags
 <ul class='list-unstyled'>
   {% for tag in collections.tagList %}
     {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
-    <li><a href="{{ tagUrl | url }}" class="post-tag"><span class="badge bg-light text-dark">{{ tag }}</span></a></li>
+    <li><a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a></li>
   {% endfor %}
 </ul>

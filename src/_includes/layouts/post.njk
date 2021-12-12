@@ -35,7 +35,7 @@ templateClass: tmpl-post
                 {% for tag in tags | filterTagList %}
                     {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
                     <li class="d-inline-block mx-1">
-                        <a href="{{ tagUrl | url }}" class="post-tag"><span class="badge bg-light text-dark">{{ tag }}</span></a>
+                        <a href="{{ tagUrl | url }}" class="post-tag"><span class="badge badge-secondary">{{ tag }}</span></a>
                     </li>
                 {% endfor %}
             </ul>

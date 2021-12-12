@@ -7,6 +7,7 @@ image: https://picsum.photos/1920/1080
 tags:
 - another tag 
 layout: post
+authorPick: 3
 ---
 
 # Hello world

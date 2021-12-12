@@ -35,7 +35,24 @@
 <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
     <div class="site-section">
         <div class="container">
-            {{ content | safe }}
+
+            {% if templateClass == 'tmpl-post'%}
+                {{ content | safe }}
+            {% else %}
+                <div class="row">
+                    <div class="main-content col-lg-9">
+
+                        <div class="section-title">
+                            <h2>{{ title }}</h2>
+                        </div>
+
+                        {{ content | safe }}
+                    </div>
+                    <div class="col-lg-3">
+                        {% include "post-list-heighlight.njk" %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 </main>
