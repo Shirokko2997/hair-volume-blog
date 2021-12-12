@@ -7,7 +7,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 
 const INPUT_BASE_DIR = "src";
-const OUTPUT_PATH = "docs";
+const OUTPUT_PATH = process.env.CI ? "docs" : "docs-temp";
 
 module.exports = function (eleventyConfig) {
   // Add plugins
