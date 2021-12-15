@@ -1,0 +1,36 @@
+{% set aboutNav = collections.all | eleventyNavigation | getByKey('about') %}
+
+
+{% set postslist = collections.posts | authorPickedPosts %}
+
+<div class="section-title">
+    <h2>Author pick</h2>
+</div>
+
+<ol reversed class="postlist list-unstyled">
+    {% for post in postslist | reverse %}
+    <li class="trend-entry d-flex">
+        <div class="number align-self-start">{{ loop.index | padStart(2, '0') }}</div>
+        <div class="trend-contents">
+            <h3>
+                <a href="{{ post.url | url }}">
+                    {% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}
+                </a>
+            </h3>
+            <div class="post-meta">
+                <span class="d-block">
+                    Posted by <a href="{{ aboutNav.url }}">{{ post.author or 'Anonymous' }}</a>
+                </span>
+                <span class="date-read">
+                    <!-- Post date -->
+                    <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+                    <!-- Read time -->
+    {#                            <span class="mx-1">•</span> 3 min read#}
+
+                </span>
+            </div>
+        </div>
+    </li>
+
+    {% endfor %}
+</ol>

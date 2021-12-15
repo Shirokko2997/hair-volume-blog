@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% if env.isCI %}
+        <base href="https://maxinteger.github.io/hair-volume-blog/">
+    {% endif %}
+    <meta charset="utf-8">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>{{ title or metadata.title }}</title>
+    <meta name="description" content="{{ description or metadata.description }}">
+    <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+    <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml"
+          title="{{ metadata.title }}">
+    <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json"
+          title="{{ metadata.title }}">
+    <link rel="icon" href="/img/favicon.ico">
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=B612+Mono|Cabin:400,700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://use.fontawesome.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+<div class="site-wrap">
+
+<!-- Navigation-->
+
+
+{% include "navigation.njk" %}
+
+{#{% include "header.njk" %}#}
+
+<main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+    <div class="site-section">
+        <div class="container">
+
+            {% if templateClass == 'tmpl-post'%}
+                {{ content | safe }}
+            {% else %}
+                <div class="row">
+                    <div class="main-content col-lg-9">
+
+                        <div class="section-title">
+                            <h2>{{ title }}</h2>
+                        </div>
+
+                        {{ content | safe }}
+                    </div>
+                    <div class="col-lg-3">
+                        {% include "post-list-heighlight.njk" %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+
+{% include "footer.njk" %}
+
+<!-- Current page: {{ page.url | url }} -->
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+</html>

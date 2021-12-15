@@ -1,0 +1,48 @@
+{% set aboutNav = collections.all | eleventyNavigation | getByKey('about') %}
+
+<ol reversed class="postlist list-unstyled">
+
+    {% for post in postslist | reverse %}
+        <li class="post-entry-2 d-flex post-preview postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
+            {% if post.data.thumbnail %}
+                <div class="thumbnail order-md-2" style="background-image:url({{ post.data.thumbnail }})"></div>
+            {% endif %}
+            <div class="contents order-md-1 pl-0">
+                <!-- Title -->
+                <h2 class="post-title">
+                    <a href="{{ post.url | url }}" class="postlist-link">
+                        {% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}
+                    </a>
+                </h2>
+                {% if post.data.description %}
+                    <p class="mb-3">{{ post.data.description }}</p>
+                {% endif %}
+
+                <!-- Metadata -->
+                <div class="post-meta">
+
+                    <!-- Author -->
+                    <span class="d-block">
+                        Posted by <a href="{{ aboutNav.url }}">{{ post.author or 'Anonymous' }}</a>
+                    </span>
+                    <span class="date-read">
+                        <!-- Post date -->
+                        <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+                        <!-- Read time -->
+{#                            <span class="mx-1">•</span> 3 min read#}
+                        <!-- Tags -->
+                        <span class="mx-1">•</span>
+                        <ul class='post-tag-list list-unstyled d-inline-block'>
+                            {% for tag in post.data.tags | filterTagList %}
+                                {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+                                <li class="d-inline-block mx-1">
+                                    <a href="{{ tagUrl | url }}" class="post-tag"><span class="badge badge-pill badge-secondary">{{ tag }}</span></a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ol>

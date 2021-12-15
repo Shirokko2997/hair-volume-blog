@@ -1,0 +1,16 @@
+{
+  "title": "Zsebtanár blog",
+  "url": "todo",
+  "language": "hu",
+  "description": "todo",
+  "feed": {
+    "subtitle": "todo",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "todo"
+  },
+  "jsonfeed": {
+    "path": "/feed/feed.json",
+    "url": "todo/feed/feed.json"
+  }
+}
