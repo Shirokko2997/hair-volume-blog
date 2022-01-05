@@ -3,7 +3,7 @@ name: Deploy Blog
 on:
   workflow_dispatch:
   push:
-    branches: [master, develop]
+    branches: [main, develop]
 
 jobs:
   deploy_blog:
