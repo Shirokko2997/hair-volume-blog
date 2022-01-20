@@ -1,0 +1,41 @@
+{% set aboutNav = collections.all | eleventyNavigation | getByKey('about') %}
+
+
+{% set postslist = collections.posts | lastPostsWithImage %}
+
+<div class="post-carousel">
+    {% for post in postslist | reverse %}
+    <div class="post-carousel-item ">
+        <div class="carousel-item-container container">
+
+            <div class="carousel-item-image">
+                <img loading="lazy" src="{{ post.data.image }}" alt="{{ post.data.title }}">
+            </div>
+
+            <div class="carousel-item-content">
+                <h3>
+                    <a href="{{ post.url | url }}">
+                        {% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}
+                    </a>
+                </h3>
+                <div class="post-description">
+                    {{ post.data.description }}
+                </div>
+                <div class="post-meta">
+                    <span class="d-block">
+                        Posted by <a href="{{ aboutNav.url }}">{{ post.author or 'Anonymous' }}</a>
+                    </span>
+                    <span class="date-read">
+                        <!-- Post date -->
+                        <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+                        <!-- Read time -->
+        {#                            <span class="mx-1">•</span> 3 min read#}
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
