@@ -63,6 +63,21 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.data.authorPick - a.data.authorPick);
   });
 
+  eleventyConfig.addFilter("lastPostsWithImage", (list, maxLength) => {
+    const newList = (list || [])
+      .filter((p) => p.data.image && p.data.date)
+      .sort(
+        (a, b) =>
+          new Date(b.data.date).getDate() - new Date(a.data.date).getDate()
+      )
+      .reverse();
+
+    if (maxLength > 0) {
+      newList.length = maxLength;
+    }
+    return newList;
+  });
+
   function filterTagList(tags) {
     return (tags || []).filter(
       (tag) => ["all", "nav", "post", "posts"].indexOf(tag) === -1

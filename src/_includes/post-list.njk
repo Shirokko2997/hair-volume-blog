@@ -4,10 +4,7 @@
 
     {% for post in postslist | reverse %}
         <li class="post-entry-2 d-flex post-preview postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
-            {% if post.data.thumbnail %}
-                <div class="thumbnail order-md-2" style="background-image:url({{ post.data.thumbnail }})"></div>
-            {% endif %}
-            <div class="contents order-md-1 pl-0">
+            <div class="contents  pl-0">
                 <!-- Title -->
                 <h2 class="post-title">
                     <a href="{{ post.url | url }}" class="postlist-link">
@@ -43,6 +40,9 @@
                     </span>
                 </div>
             </div>
+            {% if post.data.thumbnail %}
+                <div class="thumbnail " style="background-image:url({{ post.data.thumbnail }})"></div>
+            {% endif %}
         </li>
     {% endfor %}
 </ol>
